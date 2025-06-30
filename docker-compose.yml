@@ -1,0 +1,22 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16-alpine # Usamos uma imagem leve do PostgreSQL
+    environment:
+      POSTGRES_DB: ecommercedb      # Nome do banco de dados
+      POSTGRES_USER: user           # Usuário do banco de dados
+      POSTGRES_PASSWORD: password   # Senha do usuário
+    ports:
+      - "5432:5432"                 # Mapeia a porta 5432 do container para a porta 5432 da sua máquina
+    volumes:
+      - db_data:/var/lib/postgresql/data # Volume persistente para os dados do DB
+    healthcheck: # Verifica se o DB está pronto para aceitar conexões
+      test: ["CMD-SHELL", "pg_isready -U user -d ecommercedb"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  db_data: # Define o volume para persistir os dados do banco

@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python/
+env/
+venv/
+*.env # Ignorar arquivos .env com variáveis de ambiente
+.pytest_cache/
+.vscode/ # Opcional: se você usa VS Code e não quer versionar as configs dele
+
+# Database
+*.db
+*.sqlite
+/data/ # Se a pasta de dados do PostgreSQL estiver dentro do seu projeto, o que geralmente não é o caso com Docker
+
+# Docker
+*.log
+volumes/
